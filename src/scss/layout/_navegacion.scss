@@ -11,9 +11,14 @@
 }
 
 .navegacion {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .3s ease-in-out, opacity 0.5s linear;
     @include tablet {
         display: flex;
         align-items: center;
+        opacity: 1;
+        visibility: visible;
     }
     a {
         color: $blanco;
@@ -34,4 +39,30 @@
             color: $verde;
         }
     }
+}
+
+.menuIcono {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility .3s ease-in-out, opacity 0.5s linear;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.mobile-menu {
+    @include tablet {
+        display: none;
+    }
+    img {
+        width: 4.5rem;
+        cursor: pointer;
+    }
+}
+
+.mostrar {
+    visibility: visible;
+    opacity: 1;
 }
