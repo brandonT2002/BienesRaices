@@ -1,6 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     eventListeners();
+    darkMode();
 })
+
+function darkMode() {
+    const botonDarkMode = document.querySelector('.dark-mode-boton');
+    botonDarkMode.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+    })
+}
 
 function eventListeners() {
     const mobileMenu = document.querySelector('.mobile-menu');
@@ -29,5 +37,5 @@ function changeImage(element, newSrc) {
         element.src = newSrc;
 
         element.classList.remove('hidden');
-    }, 400); // 500ms is the duration of the opacity transition
+    }, 350); // 500ms is the duration of the opacity transition
 }

@@ -1,3 +1,24 @@
+.derecha {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include tablet {
+        align-items: flex-end;
+    }
+    .dark-mode-boton {
+        width: 3rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        filter: invert(100%)
+    }
+    &:hover {
+        cursor: pointer;
+    }
+    @include tablet {
+        margin-top: 0;
+    }
+}
+
 .barra {
     display: flex;
     flex-direction: column;
@@ -42,6 +63,7 @@
 }
 
 .menuIcono {
+    margin-top: 2rem;
     visibility: visible;
     opacity: 1;
     transition: visibility .3s ease-in-out, opacity 0.5s linear;
