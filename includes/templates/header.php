@@ -11,13 +11,13 @@
         <div class="contenedor contenido-header">
             <div class="barra">
                 <a href="/">
-                    <img src="build/img/logo.svg" alt="logo bienes raices">
+                    <img src="/build/img/logo.svg" alt="logo bienes raices">
                 </a>
                 <div class="mobile-menu">
-                    <img class="menuIcono" src="build/img/barras.svg" alt="icono menu responsive">
+                    <img class="menuIcono" src="/build/img/barras.svg" alt="icono menu responsive">
                 </div>
                 <div class="derecha">
-                    <img src="build/img/dark-mode.svg" alt="dark mode" class="dark-mode-boton">
+                    <img src="/build/img/dark-mode.svg" alt="dark mode" class="dark-mode-boton">
                     <nav class="navegacion">
                         <a href="nosotros.php">Nosotros</a>
                         <a href="anuncios.php">Anuncios</a>

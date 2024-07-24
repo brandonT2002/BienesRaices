@@ -38,10 +38,10 @@ function navegacionResponsive() {
 
     if (navegacion.classList.contains('mostrar')) {
         navegacion.classList.remove('mostrar');
-        changeImage(icono, 'build/img/barras.svg');
+        changeImage(icono, '/build/img/barras.svg');
     } else {
         navegacion.classList.add('mostrar');
-        changeImage(icono, 'build/img/cerrar.svg');
+        changeImage(icono, '/build/img/cerrar.svg');
     }
     // alternativa
     // navegacion.classList.toggle('mostrar')
