@@ -22,14 +22,23 @@
         // var_dump($_POST);
         // echo '</pre>';
 
-        $titulo = $_POST['titulo'];
-        $precio = $_POST['precio'];
-        $descripcion = $_POST['descripcion'];
-        $habitaciones = $_POST['habitaciones'];
-        $wc = $_POST['wc'];
-        $estacionamiento = $_POST['estacionamiento'];
-        $vendedorId = $_POST['vendedor'];
-        $creado = date('Y/m/d');
+        // echo '<pre>';
+        // var_dump($_FILES);
+        // echo '</pre>';
+
+        // exit;
+
+        $titulo          = mysqli_real_escape_string($db, $_POST['titulo']);
+        $precio          = mysqli_real_escape_string($db, $_POST['precio']);
+        $descripcion     = mysqli_real_escape_string($db, $_POST['descripcion']);
+        $habitaciones    = mysqli_real_escape_string($db, $_POST['habitaciones']);
+        $wc              = mysqli_real_escape_string($db, $_POST['wc']);
+        $estacionamiento = mysqli_real_escape_string($db, $_POST['estacionamiento']);
+        $vendedorId      = mysqli_real_escape_string($db, $_POST['vendedor']);
+        $creado          = mysqli_real_escape_string($db, date('Y/m/d'));
+
+        // Asignar files hacia una variable
+        $imagen = $_FILES['imagen'];
 
         if (!$titulo || !$precio || !$descripcion || !$habitaciones || !$wc || !$estacionamiento) {
             $errores[] = 'Todos los campos son obligatorios';
@@ -39,7 +48,15 @@
             $errores[] = 'Elige un Vendedor';
         }
 
-        // var_dump($errores);
+        if (!$imagen['name'] || $imagen['error']) {
+            $errores[] = 'La Imagen es Obligatoria';
+        }
+
+        // validar el tamaño de la imagen
+        $medida = 1000 * 100;
+        if ($imagen['size'] > $medida) {
+            $errores[] = 'La imagen es muy pesada';
+        }
 
         if (empty($errores)) {
             // Insertar en la base de datos
@@ -68,7 +85,7 @@
         </div>
         <?php endforeach; ?>
 
-        <form class="formulario" method="POST" action="/admin/Propiedades//crear.php">
+        <form class="formulario" method="POST" action="/admin/Propiedades//crear.php" enctype="multipart/form-data">
             <fieldset>
                 <legend>Informacion General</legend>
 
@@ -79,7 +96,7 @@
                 <input type="number" id="precio" name="precio" placeholder="Precio Propiedad" value="<?php echo $precio ?>">
 
                 <label for="imagen">Imagen:</label>
-                <input type="file" id="imagen" accept="image/jpeg, image/png">
+                <input type="file" id="imagen" accept="image/jpeg, image/png" name="imagen">
 
                 <label for="descripcion">Descripcion</label>
                 <textarea id="descripcion" name="descripcion"><?php echo $descripcion ?></textarea>
