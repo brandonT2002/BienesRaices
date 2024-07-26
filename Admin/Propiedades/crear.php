@@ -52,15 +52,29 @@
             $errores[] = 'La Imagen es Obligatoria';
         }
 
-        // validar el tamaño de la imagen
-        $medida = 1000 * 100;
+        // validar el tamaño de la imagen (1mb máximo)
+        $medida = 1000 * 1000;
         if ($imagen['size'] > $medida) {
             $errores[] = 'La imagen es muy pesada';
         }
 
         if (empty($errores)) {
+            // subida de archivos
+            // Crear carpeta
+            $carpetaImagenes = '../../imagenes/';
+
+            if (!is_dir($carpetaImagenes)) {
+                mkdir($carpetaImagenes);
+            }
+
+            // generar nombre único
+            $nombreImagen = md5(uniqid( rand(), true )) . 'jpg';
+
+            // subir la imagen
+            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
+
             // Insertar en la base de datos
-            $query = "INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, creado, Vendedores_id) VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado', '$vendedorId')";
+            $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado, Vendedores_id) VALUES ('$titulo', '$precio', '$nombreImagen', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado', '$vendedorId')";
 
             // echo $query;
             $resultado = mysqli_query($db, $query);
