@@ -80,7 +80,7 @@
             $resultado = mysqli_query($db, $query);
             if ($resultado) {
                 // redireccionar al usuario
-                header('Location: /admin');
+                header('Location: /admin?resultado=1');
             }
         }
     }
